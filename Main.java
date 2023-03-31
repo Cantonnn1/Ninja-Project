@@ -252,17 +252,16 @@ public class Main extends Application {
 			delay6.setOnFinished(event -> smoke6.setVisible(true)); // Change smoke to visible
 			delay6.play(); // Start the animation
 
-			evolve = true; // changing the evolution boolean to true
-
 			PauseTransition delay15 = new PauseTransition(Duration.seconds(4.5)); // Create a delay for the animation
 			delay15.setOnFinished(event -> {
-				if (evolve = true) { // Making sure the evolution is true
-					ninjaStanding2.setVisible(true); // Making the ninjaStanding2 graphic visible
-					ninjaKicking2.setVisible(true); // Making the ninjaKicking2 graphic visible
-					// Change button to ninjaKicking2 (The graphics wont work without this line)
-					moneyButton.setGraphic(ninjaKicking2);
-					moneyButton.setGraphic(ninjaStanding2); // Changing the button to ninjaStanding2
-				}
+
+				evolve = true; // changing the evolution boolean to true
+				ninjaStanding2.setVisible(true); // Making the ninjaStanding2 graphic visible
+				ninjaKicking2.setVisible(true); // Making the ninjaKicking2 graphic visible
+				// Change button to ninjaKicking2 (The graphics wont work without this line)
+				moneyButton.setGraphic(ninjaKicking2);
+				moneyButton.setGraphic(ninjaStanding2); // Changing the button to ninjaStanding2
+
 			});
 			delay15.play(); // Start the animation
 
