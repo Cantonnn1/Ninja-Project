@@ -17,7 +17,7 @@ public class Main extends Application {
 		launch(args);
 	}
 
-	private boolean evolve = false;
+	private boolean evolve = false; // Setup for ninja evolution
 
 	private int money = 0; // Initializing money to 0
 
@@ -94,15 +94,15 @@ public class Main extends Application {
 		log3.setFitHeight(50); // Setting Size
 		log3.setPreserveRatio(true); // Locking the ratio
 
-		ImageView ninjaStanding2 = new ImageView("ninja-image2-1.png");
-		ninjaStanding2.setFitHeight(350);
-		ninjaStanding2.setPreserveRatio(true);
-		ninjaStanding2.setVisible(false);
+		ImageView ninjaStanding2 = new ImageView("ninja-image2-1.png"); // Getting the second standing Ninja image
+		ninjaStanding2.setFitHeight(350); // Setting Size
+		ninjaStanding2.setPreserveRatio(true); // Locking the ratio
+		ninjaStanding2.setVisible(false); // Making the ninja invisible
 
-		ImageView ninjaKicking2 = new ImageView("ninja-image2-2.png");
-		ninjaKicking2.setFitHeight(350);
-		ninjaKicking2.setPreserveRatio(true);
-		ninjaKicking2.setVisible(false);
+		ImageView ninjaKicking2 = new ImageView("ninja-image2-2.png"); // Getting the second kicking Ninja image
+		ninjaKicking2.setFitHeight(350); // Setting Size
+		ninjaKicking2.setPreserveRatio(true); // Locking the ratio
+		ninjaKicking2.setVisible(false); // Making the ninja invisible
 
 		ImageView ninjaStanding = new ImageView("ninja-image.png"); // Getting the standing Ninja image
 		ninjaStanding.setFitHeight(350); // Setting Size
@@ -116,6 +116,7 @@ public class Main extends Application {
 
 		Pane p = new Pane(); // Creates pane
 
+		// Basic button for evolution of ninja demonstration
 		Button transform = new Button("Click to transform!");
 		transform.setTranslateX(150);
 		transform.setTranslateY(15);
@@ -191,18 +192,18 @@ public class Main extends Application {
 			money++; // Increments money
 			moneyLabel.setText("Current $$$: " + money); // Updates the label to display current money
 
-			if (evolve == false) {
+			if (evolve == false) { // If ninja did not evolve
 				moneyButton.setGraphic(ninjaKicking); // Change button to ninjaKicking
 				PauseTransition delay = new PauseTransition(Duration.seconds(0.1)); // Create a delay for the animation
-				delay.setOnFinished(event -> moneyButton.setGraphic(ninjaStanding)); // Change button back to
-																						// ninjaStanding
-				delay.play(); // Start the delay
-			} else if (evolve == true) {
-				moneyButton.setGraphic(ninjaKicking2); // Change button to ninjaKicking
+				// Change button back to ninjaStanding
+				delay.setOnFinished(event -> moneyButton.setGraphic(ninjaStanding));
+				delay.play(); // Start the animation
+			} else if (evolve == true) { // If ninja did evolve
+				moneyButton.setGraphic(ninjaKicking2); // Change button to ninjaKicking2
 				PauseTransition delay = new PauseTransition(Duration.seconds(0.1)); // Create a delay for the animation
-				delay.setOnFinished(event -> moneyButton.setGraphic(ninjaStanding2)); // Change button back to
-																						// ninjaStanding
-				delay.play(); // Start the delay
+				// Change button back to ninjaStanding2
+				delay.setOnFinished(event -> moneyButton.setGraphic(ninjaStanding2));
+				delay.play(); // Start the animation
 			}
 		});
 
@@ -220,82 +221,82 @@ public class Main extends Application {
 
 		transform.setOnAction(e -> { // Makes the smoke appear, changes ninja, then smoke dissapears
 			PauseTransition delay0 = new PauseTransition(Duration.seconds(.5)); // Create a delay for the animation
-			delay0.setOnFinished(event -> smoke0.setVisible(true)); // Change button back to ninjaStanding
-			delay0.play(); // Start the delay
+			delay0.setOnFinished(event -> smoke0.setVisible(true)); // Change smoke to visible
+			delay0.play(); // Start the animation
 
 			PauseTransition delay = new PauseTransition(Duration.seconds(1)); // Create a delay for the animation
 			delay.setOnFinished(event -> smoke1.setVisible(true)); // Change smoke to visible
-			delay.play(); // Start the delay
+			delay.play(); // Start the animation
 
 			PauseTransition delay1 = new PauseTransition(Duration.seconds(1.5)); // Create a delay for the animation
 			delay1.setOnFinished(event -> smoke.setVisible(true)); // Change smoke to visible
-			delay1.play(); // Start the delay
+			delay1.play(); // Start the animation
 
 			PauseTransition delay2 = new PauseTransition(Duration.seconds(2)); // Create a delay for the animation
 			delay2.setOnFinished(event -> smoke2.setVisible(true)); // Change smoke to visible
-			delay2.play(); // Start the delay
+			delay2.play(); // Start the animation
 
 			PauseTransition delay3 = new PauseTransition(Duration.seconds(2.5)); // Create a delay for the animation
 			delay3.setOnFinished(event -> smoke3.setVisible(true)); // Change smoke to visible
-			delay3.play(); // Start the delay
+			delay3.play(); // Start the animation
 
 			PauseTransition delay4 = new PauseTransition(Duration.seconds(3)); // Create a delay for the animation
 			delay4.setOnFinished(event -> smoke4.setVisible(true)); // Change smoke to visible
-			delay4.play(); // Start the delay
+			delay4.play(); // Start the animation
 
 			PauseTransition delay5 = new PauseTransition(Duration.seconds(3.5)); // Create a delay for the animation
 			delay5.setOnFinished(event -> smoke5.setVisible(true)); // Change smoke to visible
-			delay5.play(); // Start the delay
+			delay5.play(); // Start the animation
 
 			PauseTransition delay6 = new PauseTransition(Duration.seconds(4)); // Create a delay for the animation
 			delay6.setOnFinished(event -> smoke6.setVisible(true)); // Change smoke to visible
-			delay6.play(); // Start the delay
+			delay6.play(); // Start the animation
 
-			evolve = true;
+			evolve = true; // changing the evolution boolean to true
 
 			PauseTransition delay15 = new PauseTransition(Duration.seconds(4.5)); // Create a delay for the animation
 			delay15.setOnFinished(event -> {
-				if (evolve = true) {
-					ninjaStanding2.setVisible(true);
-					ninjaKicking2.setVisible(true);
-					moneyButton.setGraphic(ninjaStanding2);
-					moneyButton.setGraphic(ninjaKicking2); // Change button to ninjaKicking
-					moneyButton.setGraphic(ninjaStanding2);
+				if (evolve = true) { // Making sure the evolution is true
+					ninjaStanding2.setVisible(true); // Making the ninjaStanding2 graphic visible
+					ninjaKicking2.setVisible(true); // Making the ninjaKicking2 graphic visible
+					// Change button to ninjaKicking2 (The graphics wont work without this line)
+					moneyButton.setGraphic(ninjaKicking2);
+					moneyButton.setGraphic(ninjaStanding2); // Changing the button to ninjaStanding2
 				}
 			});
-			delay15.play(); // Start the delay
+			delay15.play(); // Start the animation
 
 			PauseTransition delay7 = new PauseTransition(Duration.seconds(4.5)); // Create a delay for the animation
-			delay7.setOnFinished(event -> smoke0.setVisible(false)); // Change button back to ninjaStanding
-			delay7.play(); // Start the delay
+			delay7.setOnFinished(event -> smoke0.setVisible(false)); // Change smoke to invisible
+			delay7.play(); // Start the animation
 
 			PauseTransition delay8 = new PauseTransition(Duration.seconds(5)); // Create a delay for the animation
-			delay8.setOnFinished(event -> smoke1.setVisible(false)); // Change smoke to visible
-			delay8.play(); // Start the delay
+			delay8.setOnFinished(event -> smoke1.setVisible(false)); // Change smoke to invisible
+			delay8.play(); // Start the animation
 
 			PauseTransition delay9 = new PauseTransition(Duration.seconds(5.5)); // Create a delay for the animation
-			delay9.setOnFinished(event -> smoke.setVisible(false)); // Change smoke to visible
-			delay9.play(); // Start the delay
+			delay9.setOnFinished(event -> smoke.setVisible(false)); // Change smoke to invisible
+			delay9.play(); // Start the animation
 
 			PauseTransition delay10 = new PauseTransition(Duration.seconds(6)); // Create a delay for the animation
-			delay10.setOnFinished(event -> smoke2.setVisible(false)); // Change smoke to visible
-			delay10.play(); // Start the delay
+			delay10.setOnFinished(event -> smoke2.setVisible(false)); // Change smoke to invisible
+			delay10.play(); // Start the animation
 
 			PauseTransition delay11 = new PauseTransition(Duration.seconds(6.5)); // Create a delay for the animation
-			delay11.setOnFinished(event -> smoke3.setVisible(false)); // Change smoke to visible
-			delay11.play(); // Start the delay
+			delay11.setOnFinished(event -> smoke3.setVisible(false)); // Change smoke to invisible
+			delay11.play(); // Start the animation
 
 			PauseTransition delay12 = new PauseTransition(Duration.seconds(7)); // Create a delay for the animation
-			delay12.setOnFinished(event -> smoke4.setVisible(false)); // Change smoke to visible
-			delay12.play(); // Start the delay
+			delay12.setOnFinished(event -> smoke4.setVisible(false)); // Change smoke to invisible
+			delay12.play(); // Start the animation
 
 			PauseTransition delay13 = new PauseTransition(Duration.seconds(7.5)); // Create a delay for the animation
-			delay13.setOnFinished(event -> smoke5.setVisible(false)); // Change smoke to visible
-			delay13.play(); // Start the delay
+			delay13.setOnFinished(event -> smoke5.setVisible(false)); // Change smoke to invisible
+			delay13.play(); // Start the animation
 
 			PauseTransition delay14 = new PauseTransition(Duration.seconds(8)); // Create a delay for the animation
-			delay14.setOnFinished(event -> smoke6.setVisible(false)); // Change smoke to visible
-			delay14.play(); // Start the delay
+			delay14.setOnFinished(event -> smoke6.setVisible(false)); // Change smoke to invisible
+			delay14.play(); // Start the animation
 
 		});
 
@@ -315,6 +316,8 @@ public class Main extends Application {
 		p.getChildren().addAll(bigButton, moneyLabel, upgradeButtons, rectangle, rectangle2, rectangle3, rectangle4,
 				transform, smoke0, smoke, smoke1, smoke2, smoke3, smoke4, smoke5, smoke6, ninjaStanding2,
 				ninjaKicking2);
+
+		// Making the rectangles go behind the buttons
 		rectangle.toBack();
 		rectangle2.toBack();
 		rectangle3.toBack();
