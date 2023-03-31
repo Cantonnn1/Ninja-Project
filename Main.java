@@ -26,6 +26,12 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
+//		// Setting up the backround music
+//		String path = "music.mp3";
+//		Media media = new Media(Paths.get(path).toUri().toString());
+//		MediaPlayer mediaPlayer = new MediaPlayer(media);
+//		mediaPlayer.play();
+
 		ImageView smoke0 = new ImageView("Smoke.png"); // Getting the smoke picture
 		smoke0.setFitHeight(125); // Setting Size
 		smoke0.setPreserveRatio(true); // Locking the ratio
@@ -95,22 +101,18 @@ public class Main extends Application {
 		log3.setPreserveRatio(true); // Locking the ratio
 
 		ImageView ninjaStanding2 = new ImageView("ninja-image2-1.png"); // Getting the second standing Ninja image
-		ninjaStanding2.setFitHeight(350); // Setting Size
-		ninjaStanding2.setPreserveRatio(true); // Locking the ratio
+		ninjaConfiguration(ninjaStanding2);
 		ninjaStanding2.setVisible(false); // Making the ninja invisible
 
 		ImageView ninjaKicking2 = new ImageView("ninja-image2-2.png"); // Getting the second kicking Ninja image
-		ninjaKicking2.setFitHeight(350); // Setting Size
-		ninjaKicking2.setPreserveRatio(true); // Locking the ratio
+		ninjaConfiguration(ninjaKicking2);
 		ninjaKicking2.setVisible(false); // Making the ninja invisible
 
 		ImageView ninjaStanding = new ImageView("ninja-image.png"); // Getting the standing Ninja image
-		ninjaStanding.setFitHeight(350); // Setting Size
-		ninjaStanding.setPreserveRatio(true); // Locking the ratio
+		ninjaConfiguration(ninjaStanding);
 
 		ImageView ninjaKicking = new ImageView("ninja-image2.png"); // Getting the kicking Ninja image
-		ninjaKicking.setFitHeight(350); // Setting Size
-		ninjaKicking.setPreserveRatio(true); // Locking the ratio
+		ninjaConfiguration(ninjaKicking);
 
 		primaryStage.setResizable(false); // Making it so that the user cannot re-size the application window
 
@@ -220,39 +222,39 @@ public class Main extends Application {
 		});
 
 		transform.setOnAction(e -> { // Makes the smoke appear, changes ninja, then smoke dissapears
-			PauseTransition delay0 = new PauseTransition(Duration.seconds(.5)); // Create a delay for the animation
+			PauseTransition delay0 = new PauseTransition(Duration.seconds(.2)); // Create a delay for the animation
 			delay0.setOnFinished(event -> smoke0.setVisible(true)); // Change smoke to visible
 			delay0.play(); // Start the animation
 
-			PauseTransition delay = new PauseTransition(Duration.seconds(1)); // Create a delay for the animation
+			PauseTransition delay = new PauseTransition(Duration.seconds(.4)); // Create a delay for the animation
 			delay.setOnFinished(event -> smoke1.setVisible(true)); // Change smoke to visible
 			delay.play(); // Start the animation
 
-			PauseTransition delay1 = new PauseTransition(Duration.seconds(1.5)); // Create a delay for the animation
+			PauseTransition delay1 = new PauseTransition(Duration.seconds(.6)); // Create a delay for the animation
 			delay1.setOnFinished(event -> smoke.setVisible(true)); // Change smoke to visible
 			delay1.play(); // Start the animation
 
-			PauseTransition delay2 = new PauseTransition(Duration.seconds(2)); // Create a delay for the animation
+			PauseTransition delay2 = new PauseTransition(Duration.seconds(.8)); // Create a delay for the animation
 			delay2.setOnFinished(event -> smoke2.setVisible(true)); // Change smoke to visible
 			delay2.play(); // Start the animation
 
-			PauseTransition delay3 = new PauseTransition(Duration.seconds(2.5)); // Create a delay for the animation
+			PauseTransition delay3 = new PauseTransition(Duration.seconds(1)); // Create a delay for the animation
 			delay3.setOnFinished(event -> smoke3.setVisible(true)); // Change smoke to visible
 			delay3.play(); // Start the animation
 
-			PauseTransition delay4 = new PauseTransition(Duration.seconds(3)); // Create a delay for the animation
+			PauseTransition delay4 = new PauseTransition(Duration.seconds(1.2)); // Create a delay for the animation
 			delay4.setOnFinished(event -> smoke4.setVisible(true)); // Change smoke to visible
 			delay4.play(); // Start the animation
 
-			PauseTransition delay5 = new PauseTransition(Duration.seconds(3.5)); // Create a delay for the animation
+			PauseTransition delay5 = new PauseTransition(Duration.seconds(1.4)); // Create a delay for the animation
 			delay5.setOnFinished(event -> smoke5.setVisible(true)); // Change smoke to visible
 			delay5.play(); // Start the animation
 
-			PauseTransition delay6 = new PauseTransition(Duration.seconds(4)); // Create a delay for the animation
+			PauseTransition delay6 = new PauseTransition(Duration.seconds(1.6)); // Create a delay for the animation
 			delay6.setOnFinished(event -> smoke6.setVisible(true)); // Change smoke to visible
 			delay6.play(); // Start the animation
 
-			PauseTransition delay15 = new PauseTransition(Duration.seconds(4.5)); // Create a delay for the animation
+			PauseTransition delay15 = new PauseTransition(Duration.seconds(1.8)); // Create a delay for the animation
 			delay15.setOnFinished(event -> {
 
 				evolve = true; // changing the evolution boolean to true
@@ -265,35 +267,35 @@ public class Main extends Application {
 			});
 			delay15.play(); // Start the animation
 
-			PauseTransition delay7 = new PauseTransition(Duration.seconds(4.5)); // Create a delay for the animation
+			PauseTransition delay7 = new PauseTransition(Duration.seconds(1.8)); // Create a delay for the animation
 			delay7.setOnFinished(event -> smoke0.setVisible(false)); // Change smoke to invisible
 			delay7.play(); // Start the animation
 
-			PauseTransition delay8 = new PauseTransition(Duration.seconds(5)); // Create a delay for the animation
+			PauseTransition delay8 = new PauseTransition(Duration.seconds(2)); // Create a delay for the animation
 			delay8.setOnFinished(event -> smoke1.setVisible(false)); // Change smoke to invisible
 			delay8.play(); // Start the animation
 
-			PauseTransition delay9 = new PauseTransition(Duration.seconds(5.5)); // Create a delay for the animation
+			PauseTransition delay9 = new PauseTransition(Duration.seconds(2.2)); // Create a delay for the animation
 			delay9.setOnFinished(event -> smoke.setVisible(false)); // Change smoke to invisible
 			delay9.play(); // Start the animation
 
-			PauseTransition delay10 = new PauseTransition(Duration.seconds(6)); // Create a delay for the animation
+			PauseTransition delay10 = new PauseTransition(Duration.seconds(2.4)); // Create a delay for the animation
 			delay10.setOnFinished(event -> smoke2.setVisible(false)); // Change smoke to invisible
 			delay10.play(); // Start the animation
 
-			PauseTransition delay11 = new PauseTransition(Duration.seconds(6.5)); // Create a delay for the animation
+			PauseTransition delay11 = new PauseTransition(Duration.seconds(2.6)); // Create a delay for the animation
 			delay11.setOnFinished(event -> smoke3.setVisible(false)); // Change smoke to invisible
 			delay11.play(); // Start the animation
 
-			PauseTransition delay12 = new PauseTransition(Duration.seconds(7)); // Create a delay for the animation
+			PauseTransition delay12 = new PauseTransition(Duration.seconds(2.8)); // Create a delay for the animation
 			delay12.setOnFinished(event -> smoke4.setVisible(false)); // Change smoke to invisible
 			delay12.play(); // Start the animation
 
-			PauseTransition delay13 = new PauseTransition(Duration.seconds(7.5)); // Create a delay for the animation
+			PauseTransition delay13 = new PauseTransition(Duration.seconds(3)); // Create a delay for the animation
 			delay13.setOnFinished(event -> smoke5.setVisible(false)); // Change smoke to invisible
 			delay13.play(); // Start the animation
 
-			PauseTransition delay14 = new PauseTransition(Duration.seconds(8)); // Create a delay for the animation
+			PauseTransition delay14 = new PauseTransition(Duration.seconds(3.2)); // Create a delay for the animation
 			delay14.setOnFinished(event -> smoke6.setVisible(false)); // Change smoke to invisible
 			delay14.play(); // Start the animation
 
@@ -331,6 +333,11 @@ public class Main extends Application {
 		primaryStage.setScene(s);
 		primaryStage.show();
 
+	}
+
+	public static void ninjaConfiguration(ImageView ninja) {
+		ninja.setFitHeight(350); // Setting Size
+		ninja.setPreserveRatio(true); // Locking the ratio
 	}
 
 }
