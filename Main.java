@@ -33,72 +33,37 @@ public class Main extends Application {
 //		mediaPlayer.play();
 
 		ImageView smoke0 = new ImageView("Smoke.png"); // Getting the smoke picture
-		smoke0.setFitHeight(125); // Setting Size
-		smoke0.setPreserveRatio(true); // Locking the ratio
-		smoke0.setTranslateX(55); // Setting X position
-		smoke0.setTranslateY(50); // Setting Y poition
-		smoke0.setVisible(false); // Making the smoke invisible
+		smokeConfiguration(smoke0, 55, 50);
 
 		ImageView smoke = new ImageView("Smoke.png"); // Getting the smoke picture
-		smoke.setFitHeight(125); // Setting Size
-		smoke.setPreserveRatio(true); // Locking the ratio
-		smoke.setTranslateX(10); // Setting X position
-		smoke.setTranslateY(70); // Setting Y poition
-		smoke.setVisible(false); // Making the smoke invisible
+		smokeConfiguration(smoke, 10, 70);
 
 		ImageView smoke1 = new ImageView("Smoke.png"); // Getting the smoke picture
-		smoke1.setFitHeight(125); // Setting Size
-		smoke1.setPreserveRatio(true); // Locking the ratio
-		smoke1.setTranslateX(112); // Setting X position
-		smoke1.setTranslateY(55); // Setting Y poition
-		smoke1.setVisible(false); // Making the smoke invisible
+		smokeConfiguration(smoke1, 112, 55);
 
 		ImageView smoke2 = new ImageView("Smoke.png"); // Getting the smoke picture
-		smoke2.setFitHeight(125); // Setting Size
-		smoke2.setPreserveRatio(true); // Locking the ratio
-		smoke2.setTranslateX(20); // Setting X position
-		smoke2.setTranslateY(120); // Setting Y poition
-		smoke2.setVisible(false); // Making the smoke invisible
+		smokeConfiguration(smoke2, 20, 120);
 
 		ImageView smoke3 = new ImageView("Smoke.png"); // Getting the smoke picture
-		smoke3.setFitHeight(125); // Setting Size
-		smoke3.setPreserveRatio(true); // Locking the ratio
-		smoke3.setTranslateX(100); // Setting X position
-		smoke3.setTranslateY(135); // Setting Y poition
-		smoke3.setVisible(false); // Making the smoke invisible
+		smokeConfiguration(smoke3, 100, 135);
 
 		ImageView smoke4 = new ImageView("Smoke.png"); // Getting the smoke picture
-		smoke4.setFitHeight(125); // Setting Size
-		smoke4.setPreserveRatio(true); // Locking the ratio
-		smoke4.setTranslateX(40); // Setting X position
-		smoke4.setTranslateY(210); // Setting Y poition
-		smoke4.setVisible(false); // Making the smoke invisible
+		smokeConfiguration(smoke4, 40, 210);
 
 		ImageView smoke5 = new ImageView("Smoke.png"); // Getting the smoke picture
-		smoke5.setFitHeight(125); // Setting Size
-		smoke5.setPreserveRatio(true); // Locking the ratio
-		smoke5.setTranslateX(100); // Setting X position
-		smoke5.setTranslateY(220); // Setting Y poition
-		smoke5.setVisible(false); // Making the smoke invisible
+		smokeConfiguration(smoke5, 100, 220);
 
 		ImageView smoke6 = new ImageView("Smoke.png"); // Getting the smoke picture
-		smoke6.setFitHeight(125); // Setting Size
-		smoke6.setPreserveRatio(true); // Locking the ratio
-		smoke6.setTranslateX(55); // Setting X position
-		smoke6.setTranslateY(280); // Setting Y poition
-		smoke6.setVisible(false); // Making the smoke invisible
+		smokeConfiguration(smoke6, 55, 280);
 
 		ImageView log = new ImageView("Log.png"); // Getting the first log picture
-		log.setFitHeight(50); // Setting Size
-		log.setPreserveRatio(true); // Locking the ratio
+		logConfiguration(log);
 
 		ImageView log2 = new ImageView("Log.png"); // Getting the second log picture
-		log2.setFitHeight(50); // Setting Size
-		log2.setPreserveRatio(true); // Locking the ratio
+		logConfiguration(log2);
 
 		ImageView log3 = new ImageView("Log.png"); // Getting the third log picture
-		log3.setFitHeight(50); // Setting Size
-		log3.setPreserveRatio(true); // Locking the ratio
+		logConfiguration(log3);
 
 		ImageView ninjaStanding2 = new ImageView("ninja-image2-1.png"); // Getting the second standing Ninja image
 		ninjaConfiguration(ninjaStanding2);
@@ -134,58 +99,22 @@ public class Main extends Application {
 		moneyButton.setTranslateY(55);
 
 		Rectangle rectangle = new Rectangle(250, 75); // Creating the backround for the button
-		rectangle.setFill(Color.rgb(200, 150, 100)); // Setting fill color for rectagle
-		rectangle.setStroke(Color.rgb(100, 50, 0)); // Setting the stroke color
-		rectangle.setStrokeWidth(3); // Setting stroke width
-		// Setting rectangle location
-		rectangle.setTranslateX(275);
-		rectangle.setTranslateY(55);
+		rectangleConfiguration(rectangle, 275, 55);
 
 		Button upgradeOne = new Button(); // Making the top right button
-		upgradeOne.setGraphic(log); // Setting the picture for the button
-		// Making the button transparent
-		upgradeOne.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
-		// Setting button size and location
-		upgradeOne.setPrefWidth(175);
-		upgradeOne.setPrefHeight(75);
-		upgradeOne.setTranslateX(275);
-		upgradeOne.setTranslateY(55);
+		upgradeButtonConfiguration(upgradeOne, log, 275, 55);
 
 		Rectangle rectangle2 = new Rectangle(250, 75); // Creating the backround for the button
-		rectangle2.setFill(Color.rgb(200, 150, 100)); // Setting fill color for rectagle
-		rectangle2.setStroke(Color.rgb(100, 50, 0)); // Setting the stroke color
-		rectangle2.setStrokeWidth(3); // Setting stroke width
-		// Setting rectangle location
-		rectangle2.setTranslateX(275);
-		rectangle2.setTranslateY(180);
+		rectangleConfiguration(rectangle2, 275, 180);
 
 		Button upgradeTwo = new Button(); // Making the middle right button
-		upgradeTwo.setGraphic(log2); // Setting the picture for the button
-		// Making the button transparent
-		upgradeTwo.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
-		// Setting button size and location
-		upgradeTwo.setPrefWidth(175);
-		upgradeTwo.setPrefHeight(75);
-		upgradeTwo.setTranslateX(275);
-		upgradeTwo.setTranslateY(180);
+		upgradeButtonConfiguration(upgradeTwo, log2, 275, 180);
 
 		Rectangle rectangle3 = new Rectangle(250, 75); // Creating the backround for the button
-		rectangle3.setFill(Color.rgb(200, 150, 100)); // Setting fill color for rectagle
-		rectangle3.setStroke(Color.rgb(100, 50, 0)); // Setting the stroke color
-		rectangle3.setStrokeWidth(3); // Setting stroke width
-		// Setting rectangle location
-		rectangle3.setTranslateX(275);
-		rectangle3.setTranslateY(305);
+		rectangleConfiguration(rectangle3, 275, 305);
 
 		Button upgradeThree = new Button(); // Making the bottom right button
-		upgradeThree.setGraphic(log3); // Setting the picture for the button
-		// Making the button transparent
-		upgradeThree.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
-		// Setting button size and location
-		upgradeThree.setPrefWidth(175);
-		upgradeThree.setPrefHeight(75);
-		upgradeThree.setTranslateX(275);
-		upgradeThree.setTranslateY(305);
+		upgradeButtonConfiguration(upgradeThree, log3, 275, 305);
 
 		Group upgradeButtons = new Group(upgradeOne, upgradeTwo, upgradeThree); // Group of the upgrade button
 		Group bigButton = new Group(moneyButton); // Big button group (separated to make it make more sense in my head)
@@ -301,13 +230,9 @@ public class Main extends Application {
 
 		});
 
-		Rectangle rectangle4 = new Rectangle(115, 25); // Creating the backround for the button
-		rectangle4.setFill(Color.rgb(200, 150, 100)); // Setting fill color for rectagle
-		rectangle4.setStroke(Color.rgb(100, 50, 0)); // Setting the stroke color
+		Rectangle rectangle4 = new Rectangle(115, 25); // Creating the backround for the moneyLabel
+		rectangleConfiguration(rectangle4, 2, 3);
 		rectangle4.setStrokeWidth(5); // Setting stroke width
-		// Setting rectangle location
-		rectangle4.setTranslateX(2);
-		rectangle4.setTranslateY(3);
 
 		// Sets location for moneyLabel
 		moneyLabel.setTranslateX(8);
@@ -333,6 +258,39 @@ public class Main extends Application {
 		primaryStage.setScene(s);
 		primaryStage.show();
 
+	}
+
+	private void upgradeButtonConfiguration(Button upgrade, ImageView log, int x, int y) {
+		upgrade.setGraphic(log); // Setting the picture for the button
+		// Making the button transparent
+		upgrade.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
+		// Setting button size and location
+		upgrade.setPrefWidth(175);
+		upgrade.setPrefHeight(75);
+		upgrade.setTranslateX(x);
+		upgrade.setTranslateY(y);
+	}
+
+	private void rectangleConfiguration(Rectangle rectangle, int x, int y) {
+		rectangle.setFill(Color.rgb(200, 150, 100)); // Setting fill color for rectagle
+		rectangle.setStroke(Color.rgb(100, 50, 0)); // Setting the stroke color
+		rectangle.setStrokeWidth(3); // Setting stroke width
+		// Setting rectangle location
+		rectangle.setTranslateX(x);
+		rectangle.setTranslateY(y);
+	}
+
+	private void logConfiguration(ImageView log) {
+		log.setFitHeight(50); // Setting Size
+		log.setPreserveRatio(true); // Locking the ratio
+	}
+
+	private void smokeConfiguration(ImageView smoke, int x, int y) {
+		smoke.setFitHeight(125); // Setting Size
+		smoke.setPreserveRatio(true); // Locking the ratio
+		smoke.setVisible(false); // Making the smoke invisible
+		smoke.setTranslateX(x); // Setting X position
+		smoke.setTranslateY(y); // Setting Y poition
 	}
 
 	public static void ninjaConfiguration(ImageView ninja) {
