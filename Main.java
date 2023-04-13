@@ -30,12 +30,6 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-//		// Setting up the backround music
-//		String path = "music.mp3";
-//		Media media = new Media(Paths.get(path).toUri().toString());
-//		MediaPlayer mediaPlayer = new MediaPlayer(media);
-//		mediaPlayer.play();
-
 		ImageView smoke0 = new ImageView("Smoke.png"); // Getting the smoke picture
 		smokeConfiguration(smoke0, 55, 50);
 
@@ -87,11 +81,6 @@ public class Main extends Application {
 
 		Pane p = new Pane(); // Creates pane
 
-		// Basic button for evolution of ninja demonstration
-		Button transform = new Button("Click to transform!");
-		transform.setTranslateX(150);
-		transform.setTranslateY(15);
-
 		Button moneyButton = new Button(); // Creating main button
 		moneyButton.setGraphic(ninjaStanding); // Setting the picture for the button
 		// Making the button transparent
@@ -120,6 +109,7 @@ public class Main extends Application {
 		rectangleConfiguration(rectangle3, 275, 305);
 
 		Button upgradeThree = new Button(); // Making the bottom right button
+		Label lastUpgrade = new Label("Endgame price: 100000 kicks");
 		upgradeButtonConfiguration(upgradeThree, log3, 275, 305);
 
 		Group upgradeButtons = new Group(upgradeOne, upgradeTwo, upgradeThree); // Group of the upgrade button
@@ -183,10 +173,11 @@ public class Main extends Application {
 		upgradeThree.setOnAction(e -> { // Event handler for when the bottom upgrade button is being clicked
 
 			if (money >= thirdLeg.getPrice()) {
-				test = true;
+				lastUpgrade.setVisible(false);
+				upgradeThree.setVisible(false);
+				rectangle3.setVisible(false);
 				money = money - thirdLeg.getPrice();
 				moneyLabel.setText("Current Kicks: " + money);
-				test = true;
 				animation(smoke0, .2);
 				animation(smoke1, .4);
 				animation(smoke, .6);
@@ -216,10 +207,36 @@ public class Main extends Application {
 
 				});
 				delay.play(); // Start the animation
+
+				Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(0.01), j -> {
+
+					money += one.getMultiplier(); // Increments money
+					moneyLabel.setText("Current Kicks: " + money); // Updates the label to display current money
+
+					if (evolve == false) { // If ninja did not evolve
+						moneyButton.setGraphic(ninjaKicking); // Change button to ninjaKicking
+						PauseTransition delay2 = new PauseTransition(Duration.seconds(1)); // Create a delay for the
+																							// animation
+						// Change button back to ninjaStanding
+						delay2.setOnFinished(event -> moneyButton.setGraphic(ninjaStanding));
+						delay2.play(); // Start the animation
+					} else if (evolve == true) { // If ninja did evolve
+						moneyButton.setGraphic(ninjaKicking2); // Change button to ninjaKicking2
+						PauseTransition delay3 = new PauseTransition(Duration.seconds(1)); // Create a delay for the
+																							// animation
+						// Change button back to ninjaStanding2
+						delay3.setOnFinished(event -> moneyButton.setGraphic(ninjaStanding2));
+						delay3.play(); // Start the animation
+					}
+
+				}));
+				timeline2.setCycleCount(Timeline.INDEFINITE);
+				timeline2.play();
+
 			}
 		});
 
-		Rectangle rectangle4 = new Rectangle(115, 25); // Creating the backround for the moneyLabel
+		Rectangle rectangle4 = new Rectangle(546, 25); // Creating the backround for the moneyLabel
 		rectangleConfiguration(rectangle4, 2, 3);
 		rectangle4.setStrokeWidth(5); // Setting stroke width
 
@@ -232,11 +249,14 @@ public class Main extends Application {
 		// Sets location for numberOfStudents
 		numberOfStudents.setTranslateX(350);
 		numberOfStudents.setTranslateY(179);
+		// Label for third upgrade
+		lastUpgrade.setTranslateX(330);
+		lastUpgrade.setTranslateY(304);
 
 		// Adds everything to the pane
 		p.getChildren().addAll(bigButton, moneyLabel, upgradeButtons, rectangle, rectangle2, rectangle3, rectangle4,
-				transform, smoke0, smoke, smoke1, smoke2, smoke3, smoke4, smoke5, smoke6, ninjaStanding2, ninjaKicking2,
-				upOne, numberOfStudents);
+				smoke0, smoke, smoke1, smoke2, smoke3, smoke4, smoke5, smoke6, ninjaStanding2, ninjaKicking2, upOne,
+				numberOfStudents, lastUpgrade);
 
 		// Making the rectangles go behind the buttons
 		rectangle.toBack();
@@ -271,31 +291,6 @@ public class Main extends Application {
 
 		timeline.setCycleCount(Timeline.INDEFINITE);
 		timeline.play();
-
-		Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(0.01), e -> {
-
-			money += one.getMultiplier(); // Increments money
-			moneyLabel.setText("Current Kicks: " + money); // Updates the label to display current money
-
-			if (evolve == false) { // If ninja did not evolve
-				moneyButton.setGraphic(ninjaKicking); // Change button to ninjaKicking
-				PauseTransition delay2 = new PauseTransition(Duration.seconds(0.01)); // Create a delay for the
-																						// animation
-				// Change button back to ninjaStanding
-				delay2.setOnFinished(event -> moneyButton.setGraphic(ninjaStanding));
-				delay2.play(); // Start the animation
-			} else if (evolve == true) { // If ninja did evolve
-				moneyButton.setGraphic(ninjaKicking2); // Change button to ninjaKicking2
-				PauseTransition delay3 = new PauseTransition(Duration.seconds(0.01)); // Create a delay for the
-																						// animation
-				// Change button back to ninjaStanding2
-				delay3.setOnFinished(event -> moneyButton.setGraphic(ninjaStanding2));
-				delay3.play(); // Start the animation
-			}
-
-		}));
-		timeline2.setCycleCount(Timeline.INDEFINITE);
-		timeline2.play();
 
 		// Setting the backround image
 		p.setStyle("-fx-background-image: url('backround.jpg'); -fx-background-size: cover;");
