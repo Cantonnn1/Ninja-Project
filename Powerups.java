@@ -1,7 +1,7 @@
 
 public abstract class Powerups {
 
-	private int quantity;
+	private int quantity = 0;
 	private String name;
 	private int price;
 
@@ -27,12 +27,17 @@ public abstract class Powerups {
 	public int getPrice() {
 		return price;
 	}
+
+	public void updateQuantity() {
+		quantity++;
+	}
+
 	public void setQuantity(int x) {
-		quantity=x;
+		quantity = x;
 	}
 
 	public void setPrice(int x) {
-		price=x;
+		price = x;
 	}
 
 	public abstract int modifier();

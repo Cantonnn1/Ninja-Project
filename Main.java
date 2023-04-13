@@ -164,28 +164,34 @@ public class Main extends Application {
 			}
 
 		});
+
+		Students student = new Students();
+
 		upgradeTwo.setOnAction(e -> { // Event handler for when the middle upgrade button is being clicked
-			if (money >= 200) { // Check if player has enough money to buy upgrade
-				money -= 200; // Deduct money for the upgrade
-				moneyLabel.setText("Current Kicks: " + money); // Update money label with current money value
 
-				Timeline timeline = new Timeline(); // Create a timeline for the ticks
-				timeline.setCycleCount(Timeline.INDEFINITE); // Set the cycle count to indefinite
-				KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), event -> {
-					money += 2; // Increase money by 2 on each tick
-					moneyLabel.setText("Current Kicks: " + money); // Update money label with current money value
-				});
-				timeline.getKeyFrames().add(keyFrame); // Add the keyframe to the timeline
+			student.updateQuantity();
 
-				timeline.playFromStart(); // Start the timeline
-
-				PauseTransition pause = new PauseTransition(Duration.seconds(30)); // Create a pause transition for 30
-																					// seconds
-				pause.setOnFinished(event1 -> {
-					timeline.stop(); // Stop the timeline after 30 seconds
-				});
-				pause.play(); // Start the pause transition
-			}
+//			if (money >= 200) { // Check if player has enough money to buy upgrade
+//				money -= 200; // Deduct money for the upgrade
+//				moneyLabel.setText("Current Kicks: " + money); // Update money label with current money value
+//
+//				Timeline timeline = new Timeline(); // Create a timeline for the ticks
+//				timeline.setCycleCount(Timeline.INDEFINITE); // Set the cycle count to indefinite
+//				KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), event -> {
+//					money += 2; // Increase money by 2 on each tick
+//					moneyLabel.setText("Current Kicks: " + money); // Update money label with current money value
+//				});
+//				timeline.getKeyFrames().add(keyFrame); // Add the keyframe to the timeline
+//
+//				timeline.playFromStart(); // Start the timeline
+//
+//				PauseTransition pause = new PauseTransition(Duration.seconds(30)); // Create a pause transition for 30
+//																					// seconds
+//				pause.setOnFinished(event1 -> {
+//					timeline.stop(); // Stop the timeline after 30 seconds
+//				});
+//				pause.play(); // Start the pause transition
+//			}
 		});
 
 		upgradeThree.setOnAction(e -> { // Event handler for when the bottom upgrade button is being clicked
@@ -248,9 +254,9 @@ public class Main extends Application {
 		rectangle3.toBack();
 		rectangle4.toBack();
 
-		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
+		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(.0001), e -> {
 
-			money += quantity;
+			money += student.getQuantity();
 			moneyLabel.setText("Current Kicks: " + money); // Update money label with current money value
 
 		}));
