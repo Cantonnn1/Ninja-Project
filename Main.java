@@ -254,10 +254,28 @@ public class Main extends Application {
 		rectangle3.toBack();
 		rectangle4.toBack();
 
-		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(.0001), e -> {
+		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
 
-			money += student.getQuantity();
-			moneyLabel.setText("Current Kicks: " + money); // Update money label with current money value
+			for (int i = 0; i < student.getQuantity(); i++) {
+				money += one.getMultiplier(); // Increments money
+				moneyLabel.setText("Current Kicks: " + money); // Updates the label to display current money
+
+				if (evolve == false) { // If ninja did not evolve
+					moneyButton.setGraphic(ninjaKicking); // Change button to ninjaKicking
+					PauseTransition delay = new PauseTransition(Duration.seconds(0.1)); // Create a delay for the
+																						// animation
+					// Change button back to ninjaStanding
+					delay.setOnFinished(event -> moneyButton.setGraphic(ninjaStanding));
+					delay.play(); // Start the animation
+				} else if (evolve == true) { // If ninja did evolve
+					moneyButton.setGraphic(ninjaKicking2); // Change button to ninjaKicking2
+					PauseTransition delay = new PauseTransition(Duration.seconds(0.1)); // Create a delay for the
+																						// animation
+					// Change button back to ninjaStanding2
+					delay.setOnFinished(event -> moneyButton.setGraphic(ninjaStanding2));
+					delay.play(); // Start the animation
+				}
+			}
 
 		}));
 
