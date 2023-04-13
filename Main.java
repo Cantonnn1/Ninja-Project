@@ -105,6 +105,8 @@ public class Main extends Application {
 		Rectangle rectangle = new Rectangle(250, 75); // Creating the backround for the button
 		rectangleConfiguration(rectangle, 275, 55);
 
+		upgradeOneClass one = new upgradeOneClass(0); // Creating the upgradeOne object
+		Label upOne = new Label(one.getName());
 		Button upgradeOne = new Button(); // Making the top right button
 		upgradeButtonConfiguration(upgradeOne, log, 275, 55);
 
@@ -124,7 +126,7 @@ public class Main extends Application {
 		Group bigButton = new Group(moneyButton); // Big button group (separated to make it make more sense in my head)
 
 		moneyButton.setOnAction(e -> { // Event handler for when the moneyButton (main button) being clicked the
-			money++; // Increments money
+			money = money + one.getMultiplier(); // Increments money
 			moneyLabel.setText("Current $$$: " + money); // Updates the label to display current money
 
 			if (evolve == false) { // If ninja did not evolve
@@ -144,17 +146,34 @@ public class Main extends Application {
 		});
 
 		upgradeOne.setOnAction(e -> { // Event handler for when the top upgrade button is being clicked
-			if (money >= 10) { // Check if player has enough money to upgrade
-				money -= 10; // Deduct the cost of the upgrade from money
 
-				// Double the click value
-				money += 2;
-
-				// Update money label
-				moneyLabel.setText("Current $$$: " + money);
-
+			if (money >= one.getCost()) { // Making sure the user has enough money to get the upgrade
+				money = money - one.getCost(); // Updating the current user money
+				moneyLabel.setText("Current $$$: " + money); // Updates the label to display current money
+				int level = one.getLevel(); // getting the current upgrade level
+				level++; // Incrementing the upgrade to the next level
+				one.updateLevel(level); // Applying the new upgrade level
+//				multiplierLabel.setText("Multiplier: " + one.getMultiplier() + "x"); // Creating/ updating the label to
+//																						// display the multiplier
+				upOne.setText(one.getName()); // Renaming the button after upgrade
+				if (one.getExists() == false) { // Checking to see if the button should still exist
+					upgradeOne.setVisible(false); // making the button disappear
+					rectangle.setVisible(false); // making the backround for the button dissapear
+					upOne.setVisible(false); // Making the text dissapear
+				}
 			}
 
+//			if (money >= 10) { // Check if player has enough money to upgrade
+//				money -= 10; // Deduct the cost of the upgrade from money
+//
+//				// Double the click value
+//				money += 2;
+//
+//				// Update money label
+//				moneyLabel.setText("Current $$$: " + money);
+//
+//			}
+//
 		});
 		upgradeTwo.setOnAction(e -> { // Event handler for when the middle upgrade button is being clicked
 			if (money >= 200) { // Check if player has enough money to buy upgrade
@@ -185,40 +204,26 @@ public class Main extends Application {
 		});
 
 		transform.setOnAction(e -> { // Makes the smoke appear, changes ninja, then smoke dissapears
-			PauseTransition delay0 = new PauseTransition(Duration.seconds(.2)); // Create a delay for the animation
-			delay0.setOnFinished(event -> smoke0.setVisible(true)); // Change smoke to visible
-			delay0.play(); // Start the animation
 
-			PauseTransition delay = new PauseTransition(Duration.seconds(.4)); // Create a delay for the animation
-			delay.setOnFinished(event -> smoke1.setVisible(true)); // Change smoke to visible
-			delay.play(); // Start the animation
+			animation(smoke0, .2);
+			animation(smoke1, .4);
+			animation(smoke, .6);
+			animation(smoke2, .8);
+			animation(smoke3, 1);
+			animation(smoke4, 1.2);
+			animation(smoke5, 1.4);
+			animation(smoke6, 1.6);
+			animation(smoke0, 1.8);
+			animation(smoke1, 2);
+			animation(smoke, 2.2);
+			animation(smoke2, 2.4);
+			animation(smoke3, 2.6);
+			animation(smoke4, 2.8);
+			animation(smoke5, 3);
+			animation(smoke6, 3.2);
 
-			PauseTransition delay1 = new PauseTransition(Duration.seconds(.6)); // Create a delay for the animation
-			delay1.setOnFinished(event -> smoke.setVisible(true)); // Change smoke to visible
-			delay1.play(); // Start the animation
-
-			PauseTransition delay2 = new PauseTransition(Duration.seconds(.8)); // Create a delay for the animation
-			delay2.setOnFinished(event -> smoke2.setVisible(true)); // Change smoke to visible
-			delay2.play(); // Start the animation
-
-			PauseTransition delay3 = new PauseTransition(Duration.seconds(1)); // Create a delay for the animation
-			delay3.setOnFinished(event -> smoke3.setVisible(true)); // Change smoke to visible
-			delay3.play(); // Start the animation
-
-			PauseTransition delay4 = new PauseTransition(Duration.seconds(1.2)); // Create a delay for the animation
-			delay4.setOnFinished(event -> smoke4.setVisible(true)); // Change smoke to visible
-			delay4.play(); // Start the animation
-
-			PauseTransition delay5 = new PauseTransition(Duration.seconds(1.4)); // Create a delay for the animation
-			delay5.setOnFinished(event -> smoke5.setVisible(true)); // Change smoke to visible
-			delay5.play(); // Start the animation
-
-			PauseTransition delay6 = new PauseTransition(Duration.seconds(1.6)); // Create a delay for the animation
-			delay6.setOnFinished(event -> smoke6.setVisible(true)); // Change smoke to visible
-			delay6.play(); // Start the animation
-
-			PauseTransition delay15 = new PauseTransition(Duration.seconds(1.8)); // Create a delay for the animation
-			delay15.setOnFinished(event -> {
+			PauseTransition delay = new PauseTransition(Duration.seconds(1.8)); // Create a delay for the animation
+			delay.setOnFinished(event -> {
 
 				evolve = true; // changing the evolution boolean to true
 				ninjaStanding2.setVisible(true); // Making the ninjaStanding2 graphic visible
@@ -228,39 +233,7 @@ public class Main extends Application {
 				moneyButton.setGraphic(ninjaStanding2); // Changing the button to ninjaStanding2
 
 			});
-			delay15.play(); // Start the animation
-
-			PauseTransition delay7 = new PauseTransition(Duration.seconds(1.8)); // Create a delay for the animation
-			delay7.setOnFinished(event -> smoke0.setVisible(false)); // Change smoke to invisible
-			delay7.play(); // Start the animation
-
-			PauseTransition delay8 = new PauseTransition(Duration.seconds(2)); // Create a delay for the animation
-			delay8.setOnFinished(event -> smoke1.setVisible(false)); // Change smoke to invisible
-			delay8.play(); // Start the animation
-
-			PauseTransition delay9 = new PauseTransition(Duration.seconds(2.2)); // Create a delay for the animation
-			delay9.setOnFinished(event -> smoke.setVisible(false)); // Change smoke to invisible
-			delay9.play(); // Start the animation
-
-			PauseTransition delay10 = new PauseTransition(Duration.seconds(2.4)); // Create a delay for the animation
-			delay10.setOnFinished(event -> smoke2.setVisible(false)); // Change smoke to invisible
-			delay10.play(); // Start the animation
-
-			PauseTransition delay11 = new PauseTransition(Duration.seconds(2.6)); // Create a delay for the animation
-			delay11.setOnFinished(event -> smoke3.setVisible(false)); // Change smoke to invisible
-			delay11.play(); // Start the animation
-
-			PauseTransition delay12 = new PauseTransition(Duration.seconds(2.8)); // Create a delay for the animation
-			delay12.setOnFinished(event -> smoke4.setVisible(false)); // Change smoke to invisible
-			delay12.play(); // Start the animation
-
-			PauseTransition delay13 = new PauseTransition(Duration.seconds(3)); // Create a delay for the animation
-			delay13.setOnFinished(event -> smoke5.setVisible(false)); // Change smoke to invisible
-			delay13.play(); // Start the animation
-
-			PauseTransition delay14 = new PauseTransition(Duration.seconds(3.2)); // Create a delay for the animation
-			delay14.setOnFinished(event -> smoke6.setVisible(false)); // Change smoke to invisible
-			delay14.play(); // Start the animation
+			delay.play(); // Start the animation
 
 		});
 
@@ -271,11 +244,14 @@ public class Main extends Application {
 		// Sets location for moneyLabel
 		moneyLabel.setTranslateX(8);
 		moneyLabel.setTranslateY(6.75);
+		// Sets location for upOne
+		upOne.setTranslateX(350);
+		upOne.setTranslateY(35);
 
 		// Adds everything to the pane
 		p.getChildren().addAll(bigButton, moneyLabel, upgradeButtons, rectangle, rectangle2, rectangle3, rectangle4,
-				transform, smoke0, smoke, smoke1, smoke2, smoke3, smoke4, smoke5, smoke6, ninjaStanding2,
-				ninjaKicking2);
+				transform, smoke0, smoke, smoke1, smoke2, smoke3, smoke4, smoke5, smoke6, ninjaStanding2, ninjaKicking2,
+				upOne);
 
 		// Making the rectangles go behind the buttons
 		rectangle.toBack();
@@ -292,6 +268,16 @@ public class Main extends Application {
 		primaryStage.setScene(s);
 		primaryStage.show();
 
+	}
+
+	private void animation(ImageView smoke, double time) {
+		PauseTransition delay = new PauseTransition(Duration.seconds(time)); // Create a delay for the animation
+		if (time < 1.7) {
+			delay.setOnFinished(event -> smoke.setVisible(true)); // Change smoke to visible
+		} else {
+			delay.setOnFinished(event -> smoke.setVisible(false)); // Change smoke to invisible
+		}
+		delay.play(); // Start the animation
 	}
 
 	private void upgradeButtonConfiguration(Button upgrade, ImageView log, int x, int y) {
