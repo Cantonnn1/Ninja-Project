@@ -169,7 +169,12 @@ public class Main extends Application {
 
 		upgradeTwo.setOnAction(e -> { // Event handler for when the middle upgrade button is being clicked
 
-			student.updateQuantity();
+			if (money >= student.getPrice()) {
+				money = money - student.getPrice();
+				moneyLabel.setText("Current Kicks: " + money);
+				student.updateQuantity();
+				student.updatePrice();
+			}
 
 //			if (money >= 200) { // Check if player has enough money to buy upgrade
 //				money -= 200; // Deduct money for the upgrade
