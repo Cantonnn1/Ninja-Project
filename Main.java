@@ -94,7 +94,7 @@ public class Main extends Application {
 		Rectangle rectangle = new Rectangle(250, 75); // Creating the backround for the button
 		rectangleConfiguration(rectangle, 275, 55);
 
-		upgradeOneClass one = new upgradeOneClass(0); // Creating the upgradeOne object
+		IronLeg one = new IronLeg(0); // Creating the upgradeOne object
 		Label upOne = new Label(one.getName());
 		Button upgradeOne = new Button(); // Making the top right button
 		upgradeButtonConfiguration(upgradeOne, log, 275, 55);

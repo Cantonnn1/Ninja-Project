@@ -1,7 +1,7 @@
 
 public class ThirdLeg extends Powerups {
 
-	int price = 10;
+	int price = 100000;
 
 	public ThirdLeg() {
 		super("ThirdLeg", 5);
