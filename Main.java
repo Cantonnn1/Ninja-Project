@@ -25,7 +25,7 @@ public class Main extends Application {
 
 	private int click = 0;
 
-	private Label moneyLabel = new Label("Current $$$: " + money); // Creating a label for displaying money
+	private Label moneyLabel = new Label("Current Kicks: " + money); // Creating a label for displaying money
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -127,7 +127,7 @@ public class Main extends Application {
 
 		moneyButton.setOnAction(e -> { // Event handler for when the moneyButton (main button) being clicked the
 			money = money + one.getMultiplier(); // Increments money
-			moneyLabel.setText("Current $$$: " + money); // Updates the label to display current money
+			moneyLabel.setText("Current Kicks: " + money); // Updates the label to display current money
 
 			if (evolve == false) { // If ninja did not evolve
 				moneyButton.setGraphic(ninjaKicking); // Change button to ninjaKicking
@@ -149,7 +149,7 @@ public class Main extends Application {
 
 			if (money >= one.getCost()) { // Making sure the user has enough money to get the upgrade
 				money = money - one.getCost(); // Updating the current user money
-				moneyLabel.setText("Current $$$: " + money); // Updates the label to display current money
+				moneyLabel.setText("Current Kicks: " + money); // Updates the label to display current money
 				int level = one.getLevel(); // getting the current upgrade level
 				level++; // Incrementing the upgrade to the next level
 				one.updateLevel(level); // Applying the new upgrade level
@@ -178,13 +178,13 @@ public class Main extends Application {
 		upgradeTwo.setOnAction(e -> { // Event handler for when the middle upgrade button is being clicked
 			if (money >= 200) { // Check if player has enough money to buy upgrade
 				money -= 200; // Deduct money for the upgrade
-				moneyLabel.setText("Current $$$: " + money); // Update money label with current money value
+				moneyLabel.setText("Current Kicks: " + money); // Update money label with current money value
 
 				Timeline timeline = new Timeline(); // Create a timeline for the ticks
 				timeline.setCycleCount(Timeline.INDEFINITE); // Set the cycle count to indefinite
 				KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), event -> {
 					money += 2; // Increase money by 2 on each tick
-					moneyLabel.setText("Current $$$: " + money); // Update money label with current money value
+					moneyLabel.setText("Current Kicks: " + money); // Update money label with current money value
 				});
 				timeline.getKeyFrames().add(keyFrame); // Add the keyframe to the timeline
 
