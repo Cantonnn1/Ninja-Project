@@ -1,4 +1,6 @@
+import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -20,6 +22,8 @@ public class Main extends Application {
 	private boolean evolve = false; // Setup for ninja evolution
 
 	private int money = 0; // Initializing money to 0
+
+	private int click = 0;
 
 	private Label moneyLabel = new Label("Current $$$: " + money); // Creating a label for displaying money
 
@@ -136,14 +140,44 @@ public class Main extends Application {
 				delay.setOnFinished(event -> moneyButton.setGraphic(ninjaStanding2));
 				delay.play(); // Start the animation
 			}
+
 		});
 
 		upgradeOne.setOnAction(e -> { // Event handler for when the top upgrade button is being clicked
+			if (money >= 10) { // Check if player has enough money to upgrade
+				money -= 10; // Deduct the cost of the upgrade from money
+
+				// Double the click value
+				money += 2;
+
+				// Update money label
+				moneyLabel.setText("Current $$$: " + money);
+
+			}
 
 		});
-
 		upgradeTwo.setOnAction(e -> { // Event handler for when the middle upgrade button is being clicked
+			if (money >= 200) { // Check if player has enough money to buy upgrade
+				money -= 200; // Deduct money for the upgrade
+				moneyLabel.setText("Current $$$: " + money); // Update money label with current money value
 
+				Timeline timeline = new Timeline(); // Create a timeline for the ticks
+				timeline.setCycleCount(Timeline.INDEFINITE); // Set the cycle count to indefinite
+				KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), event -> {
+					money += 2; // Increase money by 2 on each tick
+					moneyLabel.setText("Current $$$: " + money); // Update money label with current money value
+				});
+				timeline.getKeyFrames().add(keyFrame); // Add the keyframe to the timeline
+
+				timeline.playFromStart(); // Start the timeline
+
+				PauseTransition pause = new PauseTransition(Duration.seconds(30)); // Create a pause transition for 30
+																					// seconds
+				pause.setOnFinished(event1 -> {
+					timeline.stop(); // Stop the timeline after 30 seconds
+				});
+				pause.play(); // Start the pause transition
+			}
 		});
 
 		upgradeThree.setOnAction(e -> { // Event handler for when the bottom upgrade button is being clicked
