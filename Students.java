@@ -21,4 +21,8 @@ public class Students extends Powerups {
 		return price;
 	}
 
+	public String getName() {
+		return "Student Price: " + price;
+	}
+
 }

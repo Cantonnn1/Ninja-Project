@@ -23,9 +23,9 @@ public class Main extends Application {
 
 	private int money = 0; // Initializing money to 0
 
-	private int click = 0;
-
 	private Label moneyLabel = new Label("Current Kicks: " + money); // Creating a label for displaying money
+
+	Boolean test = false;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -153,8 +153,6 @@ public class Main extends Application {
 				int level = one.getLevel(); // getting the current upgrade level
 				level++; // Incrementing the upgrade to the next level
 				one.updateLevel(level); // Applying the new upgrade level
-//				multiplierLabel.setText("Multiplier: " + one.getMultiplier() + "x"); // Creating/ updating the label to
-//																						// display the multiplier
 				upOne.setText(one.getName()); // Renaming the button after upgrade
 				if (one.getExists() == false) { // Checking to see if the button should still exist
 					upgradeOne.setVisible(false); // making the button disappear
@@ -166,6 +164,7 @@ public class Main extends Application {
 		});
 
 		Students student = new Students();
+		Label numberOfStudents = new Label(student.getName());
 
 		upgradeTwo.setOnAction(e -> { // Event handler for when the middle upgrade button is being clicked
 
@@ -174,74 +173,50 @@ public class Main extends Application {
 				moneyLabel.setText("Current Kicks: " + money);
 				student.updateQuantity();
 				student.updatePrice();
+				numberOfStudents.setText(student.getName());
 			}
 
-//			if (money >= 200) { // Check if player has enough money to buy upgrade
-//				money -= 200; // Deduct money for the upgrade
-//				moneyLabel.setText("Current Kicks: " + money); // Update money label with current money value
-//
-//				Timeline timeline = new Timeline(); // Create a timeline for the ticks
-//				timeline.setCycleCount(Timeline.INDEFINITE); // Set the cycle count to indefinite
-//				KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), event -> {
-//					money += 2; // Increase money by 2 on each tick
-//					moneyLabel.setText("Current Kicks: " + money); // Update money label with current money value
-//				});
-//				timeline.getKeyFrames().add(keyFrame); // Add the keyframe to the timeline
-//
-//				timeline.playFromStart(); // Start the timeline
-//
-//				PauseTransition pause = new PauseTransition(Duration.seconds(30)); // Create a pause transition for 30
-//																					// seconds
-//				pause.setOnFinished(event1 -> {
-//					timeline.stop(); // Stop the timeline after 30 seconds
-//				});
-//				pause.play(); // Start the pause transition
-//			}
 		});
 
 		ThirdLeg thirdLeg = new ThirdLeg();
 
 		upgradeThree.setOnAction(e -> { // Event handler for when the bottom upgrade button is being clicked
+
 			if (money >= thirdLeg.getPrice()) {
+				test = true;
 				money = money - thirdLeg.getPrice();
 				moneyLabel.setText("Current Kicks: " + money);
-				thirdLeg.updateQuantity();
-				thirdLeg.updatePrice();
+				test = true;
+				animation(smoke0, .2);
+				animation(smoke1, .4);
+				animation(smoke, .6);
+				animation(smoke2, .8);
+				animation(smoke3, 1);
+				animation(smoke4, 1.2);
+				animation(smoke5, 1.4);
+				animation(smoke6, 1.6);
+				animation(smoke0, 1.8);
+				animation(smoke1, 2);
+				animation(smoke, 2.2);
+				animation(smoke2, 2.4);
+				animation(smoke3, 2.6);
+				animation(smoke4, 2.8);
+				animation(smoke5, 3);
+				animation(smoke6, 3.2);
+
+				PauseTransition delay = new PauseTransition(Duration.seconds(1.8)); // Create a delay for the animation
+				delay.setOnFinished(event -> {
+
+					evolve = true; // changing the evolution boolean to true
+					ninjaStanding2.setVisible(true); // Making the ninjaStanding2 graphic visible
+					ninjaKicking2.setVisible(true); // Making the ninjaKicking2 graphic visible
+					// Change button to ninjaKicking2 (The graphics wont work without this line)
+					moneyButton.setGraphic(ninjaKicking2);
+					moneyButton.setGraphic(ninjaStanding2); // Changing the button to ninjaStanding2
+
+				});
+				delay.play(); // Start the animation
 			}
-		});
-
-		transform.setOnAction(e -> { // Makes the smoke appear, changes ninja, then smoke dissapears
-
-			animation(smoke0, .2);
-			animation(smoke1, .4);
-			animation(smoke, .6);
-			animation(smoke2, .8);
-			animation(smoke3, 1);
-			animation(smoke4, 1.2);
-			animation(smoke5, 1.4);
-			animation(smoke6, 1.6);
-			animation(smoke0, 1.8);
-			animation(smoke1, 2);
-			animation(smoke, 2.2);
-			animation(smoke2, 2.4);
-			animation(smoke3, 2.6);
-			animation(smoke4, 2.8);
-			animation(smoke5, 3);
-			animation(smoke6, 3.2);
-
-			PauseTransition delay = new PauseTransition(Duration.seconds(1.8)); // Create a delay for the animation
-			delay.setOnFinished(event -> {
-
-				evolve = true; // changing the evolution boolean to true
-				ninjaStanding2.setVisible(true); // Making the ninjaStanding2 graphic visible
-				ninjaKicking2.setVisible(true); // Making the ninjaKicking2 graphic visible
-				// Change button to ninjaKicking2 (The graphics wont work without this line)
-				moneyButton.setGraphic(ninjaKicking2);
-				moneyButton.setGraphic(ninjaStanding2); // Changing the button to ninjaStanding2
-
-			});
-			delay.play(); // Start the animation
-
 		});
 
 		Rectangle rectangle4 = new Rectangle(115, 25); // Creating the backround for the moneyLabel
@@ -253,12 +228,15 @@ public class Main extends Application {
 		moneyLabel.setTranslateY(6.75);
 		// Sets location for upOne
 		upOne.setTranslateX(350);
-		upOne.setTranslateY(35);
+		upOne.setTranslateY(54);
+		// Sets location for numberOfStudents
+		numberOfStudents.setTranslateX(350);
+		numberOfStudents.setTranslateY(179);
 
 		// Adds everything to the pane
 		p.getChildren().addAll(bigButton, moneyLabel, upgradeButtons, rectangle, rectangle2, rectangle3, rectangle4,
 				transform, smoke0, smoke, smoke1, smoke2, smoke3, smoke4, smoke5, smoke6, ninjaStanding2, ninjaKicking2,
-				upOne);
+				upOne, numberOfStudents);
 
 		// Making the rectangles go behind the buttons
 		rectangle.toBack();
@@ -294,27 +272,25 @@ public class Main extends Application {
 		timeline.setCycleCount(Timeline.INDEFINITE);
 		timeline.play();
 
-		Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(0.1), e -> {
+		Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(0.01), e -> {
 
-			for (int i = 0; i < thirdLeg.getQuantity(); i++) {
-				money += one.getMultiplier(); // Increments money
-				moneyLabel.setText("Current Kicks: " + money); // Updates the label to display current money
+			money += one.getMultiplier(); // Increments money
+			moneyLabel.setText("Current Kicks: " + money); // Updates the label to display current money
 
-				if (evolve == false) { // If ninja did not evolve
-					moneyButton.setGraphic(ninjaKicking); // Change button to ninjaKicking
-					PauseTransition delay = new PauseTransition(Duration.seconds(0.0001)); // Create a delay for the
-																							// animation
-					// Change button back to ninjaStanding
-					delay.setOnFinished(event -> moneyButton.setGraphic(ninjaStanding));
-					delay.play(); // Start the animation
-				} else if (evolve == true) { // If ninja did evolve
-					moneyButton.setGraphic(ninjaKicking2); // Change button to ninjaKicking2
-					PauseTransition delay = new PauseTransition(Duration.seconds(0.0001)); // Create a delay for the
-																							// animation
-					// Change button back to ninjaStanding2
-					delay.setOnFinished(event -> moneyButton.setGraphic(ninjaStanding2));
-					delay.play(); // Start the animation
-				}
+			if (evolve == false) { // If ninja did not evolve
+				moneyButton.setGraphic(ninjaKicking); // Change button to ninjaKicking
+				PauseTransition delay2 = new PauseTransition(Duration.seconds(0.01)); // Create a delay for the
+																						// animation
+				// Change button back to ninjaStanding
+				delay2.setOnFinished(event -> moneyButton.setGraphic(ninjaStanding));
+				delay2.play(); // Start the animation
+			} else if (evolve == true) { // If ninja did evolve
+				moneyButton.setGraphic(ninjaKicking2); // Change button to ninjaKicking2
+				PauseTransition delay3 = new PauseTransition(Duration.seconds(0.01)); // Create a delay for the
+																						// animation
+				// Change button back to ninjaStanding2
+				delay3.setOnFinished(event -> moneyButton.setGraphic(ninjaStanding2));
+				delay3.play(); // Start the animation
 			}
 
 		}));
