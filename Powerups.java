@@ -27,6 +27,13 @@ public abstract class Powerups {
 	public int getPrice() {
 		return price;
 	}
+	public void setQuantity(int x) {
+		quantity=x;
+	}
 
-	public abstract int multiplier();
+	public void setPrice(int x) {
+		price=x;
+	}
+
+	public abstract int modifier();
 }
