@@ -199,8 +199,15 @@ public class Main extends Application {
 //			}
 		});
 
-		upgradeThree.setOnAction(e -> { // Event handler for when the bottom upgrade button is being clicked
+		ThirdLeg thirdLeg = new ThirdLeg();
 
+		upgradeThree.setOnAction(e -> { // Event handler for when the bottom upgrade button is being clicked
+			if (money >= thirdLeg.getPrice()) {
+				money = money - thirdLeg.getPrice();
+				moneyLabel.setText("Current Kicks: " + money);
+				thirdLeg.updateQuantity();
+				thirdLeg.updatePrice();
+			}
 		});
 
 		transform.setOnAction(e -> { // Makes the smoke appear, changes ninja, then smoke dissapears
@@ -286,6 +293,33 @@ public class Main extends Application {
 
 		timeline.setCycleCount(Timeline.INDEFINITE);
 		timeline.play();
+
+		Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(0.1), e -> {
+
+			for (int i = 0; i < thirdLeg.getQuantity(); i++) {
+				money += one.getMultiplier(); // Increments money
+				moneyLabel.setText("Current Kicks: " + money); // Updates the label to display current money
+
+				if (evolve == false) { // If ninja did not evolve
+					moneyButton.setGraphic(ninjaKicking); // Change button to ninjaKicking
+					PauseTransition delay = new PauseTransition(Duration.seconds(0.0001)); // Create a delay for the
+																							// animation
+					// Change button back to ninjaStanding
+					delay.setOnFinished(event -> moneyButton.setGraphic(ninjaStanding));
+					delay.play(); // Start the animation
+				} else if (evolve == true) { // If ninja did evolve
+					moneyButton.setGraphic(ninjaKicking2); // Change button to ninjaKicking2
+					PauseTransition delay = new PauseTransition(Duration.seconds(0.0001)); // Create a delay for the
+																							// animation
+					// Change button back to ninjaStanding2
+					delay.setOnFinished(event -> moneyButton.setGraphic(ninjaStanding2));
+					delay.play(); // Start the animation
+				}
+			}
+
+		}));
+		timeline2.setCycleCount(Timeline.INDEFINITE);
+		timeline2.play();
 
 		// Setting the backround image
 		p.setStyle("-fx-background-image: url('backround.jpg'); -fx-background-size: cover;");
