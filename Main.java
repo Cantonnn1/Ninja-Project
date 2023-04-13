@@ -163,17 +163,6 @@ public class Main extends Application {
 				}
 			}
 
-//			if (money >= 10) { // Check if player has enough money to upgrade
-//				money -= 10; // Deduct the cost of the upgrade from money
-//
-//				// Double the click value
-//				money += 2;
-//
-//				// Update money label
-//				moneyLabel.setText("Current $$$: " + money);
-//
-//			}
-//
 		});
 		upgradeTwo.setOnAction(e -> { // Event handler for when the middle upgrade button is being clicked
 			if (money >= 200) { // Check if player has enough money to buy upgrade
@@ -258,6 +247,16 @@ public class Main extends Application {
 		rectangle2.toBack();
 		rectangle3.toBack();
 		rectangle4.toBack();
+
+		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
+
+			money += quantity;
+			moneyLabel.setText("Current Kicks: " + money); // Update money label with current money value
+
+		}));
+
+		timeline.setCycleCount(Timeline.INDEFINITE);
+		timeline.play();
 
 		// Setting the backround image
 		p.setStyle("-fx-background-image: url('backround.jpg'); -fx-background-size: cover;");
